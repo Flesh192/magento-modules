@@ -1,0 +1,43 @@
+<?php
+    $path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'image_blog'.DS.'thumb'.DS;
+    $resource = Mage::getSingleton('core/resource');
+    $readConnection = $resource->getConnection('core_read');
+    $table_blog = $resource->getTableName('blog/blog');
+    $table_cat = $resource->getTableName('blog/category');
+    $bloges = $readConnection->fetchAll('SELECT '.$table_blog.'.* FROM ' . $table_blog.' JOIN '.$table_cat.' ON '.$table_blog.'.category = '.$table_cat.'.cat_id WHERE '.$table_cat.'.store_id LIKE \'%'.Mage::app()->getStore()->getId().'%\''.' LIMIT '.$this->getData('count'));
+    foreach($bloges as $blog): ?>
+    <article class="entry">
+        <?php $url = Mage::getModel('core/url_rewrite')
+            ->load($blog['rewrite_id'])
+            ->getRequestPath(); ?>
+        <?php if ($this->getData('title') === 'TRUE') : ?>
+            <div class="entry-title">
+                <a href="<?php echo $this->getBaseUrl().$url; ?>"><?php echo $blog['title']; ?></a>
+            </div>
+        <?php endif;
+
+        if ($this->getData('image') === 'TRUE') : ?>
+            <figure class="entry-figure">
+                <a href="<?php echo $this->getBaseUrl().$url; ?>">
+                    <img src="<?php echo $path.$blog['image'] ?>" alt="<?php echo $blog['title'] ?>">
+                </a>
+            </figure>
+        <?php endif;
+
+        if ($this->getData('body') === 'TRUE') : ?>
+            <div class="entry-summary">
+                <?php echo $blog['short']; ?>
+            </div>
+        <?php endif;
+
+        if ($this->getData('date') === 'TRUE') : ?>
+            <footer class="entry-footer">
+                <time  datetime="<?php echo date('Y-m-d', strtotime($blog['timestamp']))?>"><?php echo $this->formatDate($blog['timestamp'], 'long', false); ?></time>
+            </footer>
+        <?php endif;
+
+        if ($this->getData('more') === 'TRUE') : ?>
+            <a class="button" href="<?php echo $this->getBaseUrl().$url; ?>"><span><?php echo($this->__('more')) ?></span></a>
+        <?php endif; ?>
+    </article>
+    <?php endforeach; ?>

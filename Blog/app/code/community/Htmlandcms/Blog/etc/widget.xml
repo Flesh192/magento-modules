@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<widgets>
+	<blog_code type="blog/code" translate="name description" module="blog">
+        <name>Blog</name>
+        <description type="desc">Blog for magento</description>
+        <parameters>
+            <image translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Image</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </image>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Title</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </title>
+            <date translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Date</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </date>
+            <body translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Body</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </body>
+            <count translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Count blogs</label>
+                <type>text</type>
+                <value>5</value>
+            </count>
+            <more translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Show more link</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </more>
+            <template>
+                <value>blog/widget/grid.phtml</value>
+            </template>
+        </parameters>
+    </blog_code>
+</widgets>

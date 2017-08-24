@@ -1,0 +1,34 @@
+<?xml version="1.0"?>   
+<layout version="0.1.0">   
+  <news_index_index>
+    <reference name="root">   
+      <action method="setTemplate"><template>page/1column.phtml</template></action>
+    </reference>   
+    <reference name="content">   
+      <block type="news/index" name="news_index" template="news/index.phtml"/>
+    </reference>
+  </news_index_index>  
+  <news_index_view>
+    <reference name="root">
+      <action method="setTemplate"><template>page/1column.phtml</template></action>
+    </reference>
+    <reference name="content">
+      <block type="news/view" name="news_view" template="news/view.phtml" />
+    </reference>
+  </news_index_view>
+  <news_index_category>
+    <reference name="root">
+      <action method="setTemplate"><template>page/1column.phtml</template></action>
+    </reference>
+    <reference name="content">
+      <block type="news/category" name="news_view" template="news/category.phtml" />
+    </reference>
+  </news_index_category>
+  <default>
+    <reference name="head">
+        <action method="addCss">
+            <stylesheet>htmlcms/htmlcms.css</stylesheet>
+        </action>
+    </reference>
+   </default>
+</layout>   

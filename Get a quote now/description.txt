@@ -1,0 +1,5 @@
+Модуль Get a quote now
+Путь в админке - System->Configuration->Administrator EMAIL->get a quote now.
+При цене товара 0 появляется ссылка get a quote now, по которой пользователь переходит на другое окно с формой
+Данные отсылаются на e-mail администратора, заданного в админке
+

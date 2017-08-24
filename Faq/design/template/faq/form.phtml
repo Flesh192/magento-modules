@@ -1,0 +1,6 @@
+<?php foreach ($this->getCollection() as $faq): ?>
+<div class="faq">
+    <h4><?php echo $faq->getTitle() ?></a></h4>
+    <p><?php echo $faq->getText() ?></p>
+</div>
+<?php endforeach ?>

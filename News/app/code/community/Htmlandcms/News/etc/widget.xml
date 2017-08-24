@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<widgets>
+    <news type="news/widgetlist" translate="name description" module="news">
+        <name>News</name>
+        <description type="desc">News for magento</description>
+        <parameters>
+            <image translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Image</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </image>
+            <width translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Image widht</label>
+                <type>text</type>
+                <value>80</value>
+            </width>
+            <height translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Image height</label>
+                <type>text</type>
+                <value>80</value>
+            </height>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Title</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </title>
+            <date translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Date</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </date>
+            <body translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Body</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </body>
+            <count translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Count news</label>
+                <type>text</type>
+                <value>5</value>
+            </count>
+            <more translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Show more link</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </more>
+            <template>
+                <value>news/widget/list.phtml</value>
+            </template>
+        </parameters>
+    </news>
+    <category type="news/widgetcat" translate="name description" module="news">
+        <name>News category</name>
+        <description type="desc">News category tree</description>
+        <parameters>
+            <news_count translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Image</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </news_count>
+            <subcategory translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Show subcategory</label>
+                <type>select</type>
+                <values>
+                    <enable translate="label">
+                        <value>TRUE</value>
+                        <label>Enable</label>
+                    </enable>
+                    <disable translate="label">
+                        <value>FALSE</value>
+                        <label>Disable</label>
+                    </disable>
+                </values>
+            </subcategory>
+            <template>
+                <value>news/widget/category.phtml</value>
+            </template>
+        </parameters>
+    </category>
+</widgets>

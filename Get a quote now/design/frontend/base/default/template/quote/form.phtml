@@ -1,0 +1,42 @@
+<?php 
+    $flag = Mage::getSingleton('core/session')->getPage();
+    if (!isset($flag)): ?>
+<?php else: ?>
+    <div class="block-quote">
+        <form action="<?php echo $this->getFormAction(); ?>" method="post" id="quote-validate-detail">
+            <input type="hidden" name="page" value="<? echo Mage::getSingleton('core/session')->getPage(); ?>">
+            <?php Mage::getSingleton('core/session')->unsPage(); ?>
+            <div class="popup-content">
+                <div class="fieldset">
+                    <h2 class="legend"><?php echo $this->__('Get a Quote Now') ?></h2>
+                    <label for="name"><?php echo $this->__('Name:') ?></label>
+                    <em>*</em>
+                    <div class="input-box">
+                        <input type="text" name="name" id="quote_name" class="input-text required-entry" />
+                    </div>
+                    <label for="email"><?php echo $this->__('Email address:') ?></label>
+                    <em>*</em>
+                    <div class="input-box">
+                        <input type="text" name="email" id="quote_email" class="input-text required-entry validate-email" />
+                    </div>
+                    <label for="phone"><?php echo $this->__('Phone number:') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="phone" id="quote_phone" class="input-text number" />
+                    </div>
+                    <label for="text"><?php echo $this->__('Comment:') ?></label>
+                    <div>
+                        <textarea type="textarea" name="text" id="quote_text" class="input-text" cols="50" rows="10" ></textarea>
+                    </div>
+                    <p/>
+                    <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+<?php endif; ?>
+    
+<script type="text/javascript">
+//<![CDATA[
+    var feedbackDetail = new VarienForm('quote-validate-detail');
+//]]>
+</script>

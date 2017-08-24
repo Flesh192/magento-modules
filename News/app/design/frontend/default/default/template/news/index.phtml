@@ -1,0 +1,51 @@
+<?php /** @var Htmlandcms_News_Block_Index $this */ ?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $newses = Mage::registry('news'); ?>
+    <div class="page-title">
+        <h1><?php echo $this->__('News') ?></h1>
+    </div>
+    <?php if (Mage::getStoreConfig('htmlcms_news/news/breadcrumbs')): ?>
+        <div class="breadcrumbs">
+            <?php $breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
+            $breadcrumbs->addCrumb('home',array('label'=>Mage::helper('cms')->__('Home'),'title'=>Mage::helper('cms')->__('Home'),'link'=>Mage::getBaseUrl()));
+            $breadcrumbs->addCrumb('News', array('label'=>$this->__('News'),'title'=>$this->__('News'),'link'=>Mage::getBaseUrl().'news'));
+            echo $this->getLayout()->getBlock('breadcrumbs')->toHtml();
+            ?>
+        </div>
+    <?php endif; ?>
+<?php $nodata = Mage::registry('nodata');
+if (isset ($nodata))
+    echo $nodata; ?>
+<?php echo $this->getPagerHtml(); ?>
+<?php $path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'image_news/thumb/'; ?>
+
+<?php foreach ($newses as $news): ?>
+    <article class="entry-news">
+        <?php $url = Mage::getModel('core/url_rewrite')
+            ->load($news['rewrite_id'])
+            ->getRequestPath();
+        ?>
+        <h2 class="entry-title">
+            <a href="<?php echo $this->getBaseUrl().$url; ?>"><?php echo $news['title']; ?></a>
+        </h2>
+        <?php if(isset($news['image']) && $news['image']!=''): ?>
+            <figure class="entry-figure">
+                <a href="<?php echo $this->getBaseUrl().$url; ?>">
+                    <img src="<?php echo $path.$news['image'] ?>" alt="<?php echo $news['title'] ?>">
+                </a>
+            </figure>
+        <?php endif; ?>
+        <div class="entry-summary">
+            <?php echo $news['short']; ?>
+        </div>
+        <footer class="entry-footer">
+            <time  datetime="<?php echo date('Y-m-d', strtotime($news['timestamp']))?>"><?php echo $this->formatDate($news['timestamp'], 'long', false); ?></time>
+            <div class="category">
+                <a href="<?php echo Mage::getBaseUrl().Mage::getModel('core/url_rewrite')->load(Mage::getModel('news/category')->load($news['category'])->getRewriteId())->getRequestPath();?>">
+                    <?php echo Mage::getModel('news/category')->load($news['category'])->getName(); ?>
+                </a>
+            </div>
+            <div class="more"><a href="<?php echo $this->getBaseUrl().$url; ?>"><?php echo($this->__('more')) ?></a></div>
+        </footer>
+    </article>
+<?php endforeach; ?>

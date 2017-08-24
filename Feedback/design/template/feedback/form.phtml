@@ -1,0 +1,110 @@
+<?php
+$name = Mage::getSingleton('core/session')->getName();
+if (!isset($name)) {
+    $name = $this->htmlEscape($this->helper('vladimird_feedback')->getUserName());
+}
+$email = Mage::getSingleton('core/session')->getEmail();
+if (!isset($email)) {
+    $email = $this->htmlEscape($this->helper('vladimird_feedback')->getUserEmail());
+}
+$telephone = Mage::getSingleton('core/session')->getTelephone();
+$comment = Mage::getSingleton('core/session')->getComment();
+?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="page-title">
+    <h1><?php echo Mage::helper('vladimird_feedback')->__('Feedback') ?></h1>
+</div>
+<form action="<?php echo $this->getFormAction(); ?>" id="feedbackForm" method="post">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo Mage::helper('vladimird_feedback')->__('Contact information:') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="name" class="required"><em>*</em><?php echo Mage::helper('vladimird_feedback')->__('Name') ?></label>
+                    <div class="input-box">
+                        <input name="name" id="name" title="<?php echo Mage::helper('vladimird_feedback')->__('Name') ?>" value="<?php echo $name ?>" class="input-text required-entry" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="email"><?php echo Mage::helper('contacts')->__('Email') ?></label>
+                    <div class="input-box">
+                        <input name="email" id="email" title="<?php echo Mage::helper('vladimird_feedback')->__('Email') ?>" value="<?php echo $email?>" class="input-text validate-email" type="text" />
+                    </div>
+                </div>
+            </li>
+            <li>
+                <label for="telephone"><?php echo Mage::helper('vladimird_feedback')->__('Telephone') ?></label>
+                <div class="input-box">
+                    <input name="telephone" id="telephone" title="<?php echo Mage::helper('vladimird_feedback')->__('Telephone') ?>" value="<?php echo $telephone; ?>" class="input-text validate-number" type="text" />
+                </div>
+            </li>
+            <li>
+                <label for="subject" class="required"><em>*</em><?php echo Mage::helper('vladimird_feedback')->__('Please choose a subject') ?></label>
+                <div class="input-box">
+                    <select name="select" size="1" onChange="setOther(this.value);" class="validate-select required-entry">
+                        <option disabled selected>Please, select:</option>
+                        <option value="Payment problem">Payment problem</option>
+                        <option value="Feature request">Feature request</option>
+                        <option value="Bad product quality">Bad product quality</option>
+                        <option value="Very big problem">Very big problem</option>
+                        <option value="You a very good company!">You a very good company!</option>
+                        <option value="other">other</option>
+                    </select>
+                </div>
+            </li>
+            <li></li>
+            <li>
+                <div class="field" style="display:none;">                    
+                    <ul class="form-list">
+                        <li>
+                            <input name="reason" id="reason" class="input-text" type="text" value="" />
+                        </li>
+                    </ul>                   
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <?php if (!Mage::getSingleton('customer/session')->isLoggedIn())
+                    {
+                        /*CAPTCHA
+                         * private key: 6Ldv9tMSAAAAAPL3ZDzB8siNc--m3Z4NwJ_AMAXo
+                         * public Key: 6Ldv9tMSAAAAAJzMjtqvfrwmEHNu9suEh3FDzl5L*/
+                        require_once('recaptchalib.php');
+                        $publickey = "6Ldv9tMSAAAAAJzMjtqvfrwmEHNu9suEh3FDzl5L";
+                        echo recaptcha_get_html($publickey);
+                    } ?>
+                </div>
+            </li>
+            <li class="wide">
+                <label for="comment" class="required"><em>*</em><?php echo Mage::helper('vladimird_feedback')->__('Comment') ?></label>
+                <div class="input-box">
+                    <textarea name="comment" id="comment" title="<?php echo Mage::helper('vladimird_feedback')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3" ><?php echo $comment ?></textarea>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo Mage::helper('vladimird_feedback')->__('* Required Fields') ?></p>
+        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+        <button type="submit" title="<?php echo Mage::helper('vladimird_feedback')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('vladimird_feedback')->__('Submit') ?></span></span></button>
+    </div>
+</form>
+<?php 
+Mage::getSingleton('core/session')-> unsName
+                                  -> unsEmail
+                                  -> unsComment
+                                  -> unsTelephone
+                                  -> unsReason;
+$name = $email = $telephone = $comment = '';
+?>
+<script type="text/javascript">
+var contactForm = new VarienForm('feedbackForm', true);
+function setOther(arg){
+    if(arg=='other'){
+        $('reason').up(2).show();
+    }else{
+        $('reason').up(2).hide();
+        $('reason').value = new String(arg);
+    }
+}
+</script>

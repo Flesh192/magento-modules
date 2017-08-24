@@ -1,0 +1,63 @@
+<?php /** @var Htmlandcms_Blog_Block_Index $this */ ?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php
+$bloges = Mage::registry('blog');
+$category = Mage::registry('category');
+?>
+<div class="page-title">
+    <h1><?php echo $category['name']; ?></h1>
+</div>
+<div class="breadcrumbs">
+    <?php $breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
+    $breadcrumbs->addCrumb('home',array('label'=>Mage::helper('cms')->__('Home'),'title'=>Mage::helper('cms')->__('Home'),'link'=>Mage::getBaseUrl()));
+    $breadcrumbs->addCrumb('Blog', array('label'=>$this->__('Blog'),'title'=>$this->__('Blog'),'link'=>Mage::getBaseUrl().'blog'));
+    foreach ($category['parent'] as $val) {
+        $co = count($category['parent']);
+        $breadcrumbs->addCrumb($co, end($category['parent']));
+        unset($category['parent'][$co-1]);
+    }
+    $breadcrumbs->addCrumb('types', array('label'=>$category['name'],'title'=>$category['name']));
+    echo $this->getLayout()->getBlock('breadcrumbs')->toHtml();
+    ?>
+</div>
+<?php $nodata = Mage::registry('nodata');
+if (isset ($nodata))
+    echo $nodata; ?>
+<?php echo $this->getPagerHtml(); ?>
+<?php $path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'image_blog'.DS.'thumb'.DS; ?>
+<article class="category-item">
+    <?php if(isset($category['image']) && $category['image']!=''): ?>
+        <figure class="entry-figure">
+            <img src="<?php echo $path.$category['image'] ?>" alt="<?php echo $category['title'] ?>">
+        </figure>
+    <?php endif; ?>
+    <div class="entry-summary">
+        <?php echo $category['body']; ?>
+    </div>
+</article>
+
+<?php foreach ($bloges as $blog): ?>
+    <article class="entry">
+        <?php $url = Mage::getModel('core/url_rewrite')
+            ->load($blog['rewrite_id'])
+            ->getRequestPath();
+        ?>
+        <h2 class="entry-title">
+            <a href="<?php echo $this->getBaseUrl().$url; ?>"><?php echo $blog['title']; ?></a>
+        </h2>
+        <?php if(isset($blog['image']) && $blog['image']!=''): ?>
+            <figure class="entry-figure">
+                <a href="<?php echo $this->getBaseUrl().$url; ?>">
+                    <img src="<?php echo $path.$blog['image'] ?>" alt="<?php echo $blog['title'] ?>">
+                </a>
+            </figure>
+        <?php endif; ?>
+        <div class="entry-summary">
+            <?php echo $blog['short']; ?>
+        </div>
+        <footer class="entry-footer">
+            <time  datetime="<?php echo date('Y-m-d', strtotime($blog['timestamp']))?>"><?php echo $this->formatDate($blog['timestamp'], 'long', false); ?></time>
+            <div class="more"><a href="<?php echo $this->getBaseUrl().$url; ?>"><?php echo($this->__('more')) ?></a></div>
+        </footer>
+    </article>
+<?php endforeach; ?>

@@ -1,0 +1,41 @@
+<?php
+foreach ($this->getNewsList() as $news): ?>
+    <article class="widget-news-entry">
+        <?php $url = Mage::getModel('core/url_rewrite')
+            ->load($news['rewrite_id'])
+            ->getRequestPath(); ?>
+        <?php if ($this->getData('title') === 'TRUE') : ?>
+            <div class="entry-title">
+                <a href="<?php echo $this->getBaseUrl() . $url; ?>"><?php echo $news['title']; ?></a>
+            </div>
+        <?php endif;
+
+        if ($this->getData('image') === 'TRUE') : ?>
+            <figure class="entry-figure">
+                <?php $path = $this->getRightSizeImage($news['news_id']) ?>
+                <a href="<?php echo $this->getBaseUrl() . $url; ?>">
+                    <img src="<?php echo $path ?>" alt="<?php echo $news['title'] ?>">
+                </a>
+            </figure>
+        <?php endif;
+
+        if ($this->getData('body') === 'TRUE') : ?>
+            <div class="entry-summary">
+                <?php echo $news['short']; ?>
+            </div>
+        <?php endif;
+
+        if ($this->getData('date') === 'TRUE') : ?>
+            <footer class="entry-footer">
+                <time
+                    datetime="<?php echo date('Y-m-d', strtotime($news['timestamp'])) ?>"><?php echo $this->formatDate($news['timestamp'], 'long', false); ?></time>
+            </footer>
+        <?php endif;
+        if ($this->getData('more') === 'TRUE') : ?>
+            <footer class="entry-footer">
+                <a class="button"
+                   href="<?php echo $this->getBaseUrl() . $url; ?>"><span><?php echo($this->__('more')) ?></span></a>
+            </footer>
+        <?php endif; ?>
+    </article>
+<?php endforeach; ?>

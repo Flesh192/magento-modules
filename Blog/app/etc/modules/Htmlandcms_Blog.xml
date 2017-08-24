@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Htmlandcms_Blog>
+      <active>true</active>
+      <codePool>community</codePool>            
+	        <depends>
+                <Mage_Cms />
+            </depends>
+      <version>0.1.0</version>
+    </Htmlandcms_Blog>
+  </modules>
+</config>

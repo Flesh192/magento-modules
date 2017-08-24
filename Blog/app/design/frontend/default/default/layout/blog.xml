@@ -1,0 +1,27 @@
+<?xml version="1.0"?>   
+<layout version="0.1.0">   
+  <blog_index_index>
+    <reference name="root">   
+      <action method="setTemplate"><template>page/1column.phtml</template></action>
+    </reference>   
+    <reference name="content">   
+      <block type="blog/index" name="blog_index" template="blog/index.phtml"/>
+    </reference>
+  </blog_index_index>
+  <blog_index_view>
+    <reference name="root">
+      <action method="setTemplate"><template>page/1column.phtml</template></action>
+    </reference>
+    <reference name="content">
+      <block type="blog/view" name="blog_view" template="blog/view.phtml" />
+    </reference>
+  </blog_index_view>
+  <blog_index_category>
+    <reference name="root">
+      <action method="setTemplate"><template>page/1column.phtml</template></action>
+    </reference>
+    <reference name="content">
+      <block type="blog/category" name="blog_view" template="blog/category.phtml" />
+    </reference>
+  </blog_index_category>
+</layout>   

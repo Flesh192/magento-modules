@@ -1,0 +1,3 @@
+Модуль Feedback
+Путь в админке - Feedback Module->Feedback
+Встроенная captcha, запись в БД

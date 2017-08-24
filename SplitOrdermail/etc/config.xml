@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Staubli_SplitOrdermail>
+            <version>0.1.0</version>
+        </Staubli_SplitOrdermail>
+    </modules>
+    <global>
+        <models>
+            <splitordermail>
+                <class>Staubli_SplitOrdermail_Model</class>
+            </splitordermail>
+        </models>
+        <helpers>
+            <splitordermail>
+                <class>Staubli_SplitOrdermail_Helper</class>
+            </splitordermail>
+        </helpers>
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <splitordermail_neworder>
+                        <type>model</type>
+                        <class>splitordermail/observer</class>
+                        <method>sendMail</method>
+                    </splitordermail_neworder>
+                </observers>
+            </sales_order_place_after>
+        </events>
+        <template>
+            <email>
+                <staubli_splitordermail module="splitordermail">
+                    <label>Staubli SplitOrdermail</label>
+                    <file>staubli_splitordermail.html</file>
+                    <type>html</type>
+                </staubli_splitordermail>
+            </email>
+        </template>
+    </global>
+</config>

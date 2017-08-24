@@ -1,0 +1,14 @@
+	<layout version="0.1.0">
+    <ronisbt_quote_index_index>
+        <label>Get a Quote Now</label>
+        <reference name="head">
+            <action method="setTitle" module="quote"><title>Quote</title></action>
+        </reference>
+        <reference name="content">
+            <block type="ronisbt_quote/content" name="quote" template="quote/form.phtml"/>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+    </ronisbt_quote_index_index>
+</layout>

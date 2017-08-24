@@ -1,0 +1,19 @@
+<layout version="0.1.0">
+   <default>
+        <reference name="footer_links">
+            <action method="addLink"><label>Feedback</label><url>vladimird_feedback</url><title>Feedback</title><prepare>true</prepare></action>
+        </reference>
+    </default>
+    <vladimird_feedback_index_index>
+        <label>Feedback Form</label>
+        <reference name="head">
+            <action method="setTitle" module="feedback"><title>Feedback</title></action>
+        </reference>
+        <reference name="content">
+            <block type="vladimird_feedback/content" name="feedback" template="feedback/form.phtml"/>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+    </vladimird_feedback_index_index>
+</layout>

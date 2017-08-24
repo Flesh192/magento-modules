@@ -1,0 +1,21 @@
+<ul class="news-category-list">
+<?php
+$path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'image_news/widget/';
+foreach($this->getCategory() as $cat): ?>
+    <li>
+
+        <a href="<?php echo $this->getBaseUrl().Mage::getModel('core/url_rewrite')->load($cat['rewrite_id'])->getRequestPath(); ?>" title="<?php $cat['name']; ?>">
+            <?php echo $cat['name'];
+            if ($this->getData('news_count') === 'TRUE') :
+            echo '&nbsp;('.$this->getNewsCount ($cat['cat_id']).')';
+            endif; ?>
+        </a>
+
+        <?php if ($this->getData('subcategory') === 'TRUE') :
+            echo $this->getParentCategory ($cat['cat_id']);
+        endif;
+        ?>
+    </li>
+
+<?php endforeach; ?>
+</ul>

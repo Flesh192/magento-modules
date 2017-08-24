@@ -1,0 +1,115 @@
+/* News List Styles */
+.news-category-item {
+    margin: 0 0 2em;
+    padding: 0 0 0.5em;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+article.entry-news {
+    overflow: hidden;
+    margin: 2em 0;
+}
+article.entry-news .entry-title {
+    font-size: 2em;
+    line-height: 2.125em;
+    font-weight: bold;
+}
+.news-category-item .entry-figure,
+article.entry-news .entry-figure {
+    float: left;
+    margin: 0 1.2em 1.2em 0;
+    max-width: 25%;
+}
+article.entry-news .entry-summary {
+    float: left;
+    width: 70%;
+}
+article.entry-news .entry-footer {
+    overflow: hidden;
+    clear: both;
+}
+article.entry-news time {
+    float: left;
+    font-style: italic;
+    margin: 0 1em 0 0;
+}
+article.entry-news .category {
+    float: left;
+    margin: 0 1em 0 0;
+    font-weight: bold;
+}
+article.entry-news .more,
+article.entry-news footer .button {
+    float: right;
+}
+
+/* News Widgets */
+.widget-news-entry {
+    margin: 0 0 2em;
+    padding: 0 0 0.5em;
+    font-size: 14px;
+}
+.widget-news-entry .entry-title {
+    font-size: 2em;
+    line-height: 2.125em;
+    font-weight: bold;
+}
+.widget-news-entry .entry-summary {
+    float: left;
+    width: 70%;
+}
+.widget-news-entry .entry-footer {
+    overflow: hidden;
+    clear: both;
+}
+.widget-news-entry  time {
+    float: left;
+    font-style: italic;
+    margin: 0 1em 0 0;
+}
+.widget-news-entry  .category {
+    float: left;
+    margin: 0 1em 0 0;
+    font-weight: bold;
+}
+.widget-news-entry .entry-figure {
+    float: left;
+    margin: 0 1.2em 1.2em 0;
+}
+.widget-news-entry footer .button {
+    float: right;
+}
+
+/* News Widgets in sidebar */
+.sidebar .widget-news-entry {
+    font-size: 12px;
+    line-height: 12px;
+    margin: 0 0 1em;
+    padding: 0 0 0.5em;
+    border-bottom: 1px solid #ccc;
+}
+.sidebar .widget-news-entry .entry-title {
+    margin: 0 0 0.5em;
+    font-size: 1em;
+    line-height: 1.125em;
+}
+.sidebar .widget-news-entry .entry-figure {
+    margin: 0 0.5em 0 0;
+}
+.sidebar .widget-news-entry .entry-summary {
+    float: none;
+    width: auto;
+}
+
+/* Widget News Category List */
+ul.news-category-list {
+    list-style: disc inside;
+    font-size: 14px;
+}
+ul.news-category-list ul {
+    padding-left: 1.5em;
+}
+
+
+
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<config>
+    <tabs>
+        <htmlcms module="news" translate="label">
+            <label>Html-and-cms</label>
+            <sort_order>100</sort_order>
+        </htmlcms>
+    </tabs>
+    <sections>
+        <htmlcms_news translate="label" module="news">
+            <label>News configuration</label>
+            <tab>htmlcms</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <news translate="label">
+                    <label>News</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <breadcrumbs translate="label">
+                            <label>Enable breadcrumbs</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </breadcrumbs>
+                        <social translate="label">
+                            <label>Enable social links</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>news/social</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </social>
+                    </fields>
+                </news>
+            </groups>
+        </htmlcms_news>
+    </sections>
+</config>

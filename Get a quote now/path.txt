@@ -1,0 +1,5 @@
+/var/www/vhosts/neonexusdemo.com/subdomains/brd/httpdocs
+
+http://brd.neonexusdemo.com/sme/
+
+

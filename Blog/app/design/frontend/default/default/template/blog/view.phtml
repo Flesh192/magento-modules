@@ -1,0 +1,64 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $blog = Mage::registry('blog'); ?>
+<div class="breadcrumbs">
+    <?php $breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
+    $breadcrumbs->addCrumb('home',array('label'=>Mage::helper('cms')->__('Home'),'title'=>Mage::helper('cms')->__('Home'),'link'=>Mage::getBaseUrl()));
+    $breadcrumbs->addCrumb('Blog', array('label'=>$this->__('Blog'),'title'=>$this->__('Blog'),'link'=>Mage::getBaseUrl().'blog'));
+    foreach ($blog['parent'] as $val) {
+        $co = count($blog['parent']);
+        $breadcrumbs->addCrumb($co, end($blog['parent']));
+        unset($blog['parent'][$co-1]);
+    }
+    $breadcrumbs->addCrumb('types', array('label'=>$blog['title'],'title'=>$blog['title']));
+    echo $this->getLayout()->getBlock('breadcrumbs')->toHtml();
+    ?>
+</div>
+<?php $nodata = Mage::registry('nodata');
+if (isset ($nodata))
+    echo $nodata; ?>
+<article class="entry">
+    <h1 class="entry-title">
+        <?php echo $blog['title'] ?>
+    </h1>
+    <?php if(isset($blog['image']) && $blog['image']!='') : ?>
+        <?php $path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'image_blog'.DS; ?>
+        <figure class="entry-figure">
+            <a href="<?php echo $path.$blog['image']; ?>">
+                <img src="<?php echo $path.'thumb'.DS.$blog['image'] ?>" alt="<?php echo $blog['title'] ?>">
+            </a>
+        </figure>
+    <?php endif; ?>
+    <div class=“entry-content”>
+        <?php echo $blog['body'] ?>
+    </div>
+    <footer class="entry-footer">
+        <time  datetime="<?php echo date('Y-m-d', strtotime($blog['timestamp']))?>"><?php echo $this->formatDate($blog['timestamp'], 'long', false); ?></time>
+        <a class="button" href="<?php echo $this->getBaseUrl(); ?>blog"><span><?php echo $this->__('Back to blog')?></span></a>
+    </footer>
+</article>
+
+<?php $comments = Mage::registry('comments'); ?>
+<?php foreach ($comments as $comment): ?>
+    <h2 class="comment"><?php echo $comment['body']?></h2>
+<?php endforeach; ?>
+<form action="<?php echo $this->getFormAction(); ?>" method="post">
+    <label for="comment" class="required"><em>*</em><?php echo Mage::helper('cms')->__('Comment') ?></label>
+    <div class="input-box">
+        <textarea name="comment" id="comment" title="<?php echo Mage::helper('cms')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3" ></textarea>
+    </div>
+    <div class="input-box">
+        <?php if (!Mage::getSingleton('customer/session')->isLoggedIn())
+        {
+            if (Mage::getStoreConfig('htmlcms_section/blog/active')) {
+                require_once(Mage::getBaseDir('lib').DS.'recaptchalib.php');
+                $publickey = Mage::getStoreConfig('htmlcms_section/blog/publickey');
+                echo recaptcha_get_html($publickey);
+            }
+        } ?>
+    </div>
+    <input type="hidden" name="blog_id" value="<?php echo $blog['blog_id'] ?>"/>
+    <div class="buttons-set">
+        <p class="required"><?php echo Mage::helper('cms')->__('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo Mage::helper('cms')->__('Submit') ?>" class="button"><span><?php echo Mage::helper('cms')->__('Submit') ?></span></button>
+    </div>
+</form>

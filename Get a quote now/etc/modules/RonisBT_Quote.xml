@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <RonisBT_Quote>
+            <active>true</active>
+            <codePool>local</codePool>
+        </RonisBT_Quote>
+    </modules>
+</config>
